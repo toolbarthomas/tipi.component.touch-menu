@@ -15,7 +15,6 @@ function setTouchMenu(origin) {
 
 	var touchMenu = $('.' + touchMenuElements.root).not('.' + touchMenuStates.ready);
 	if(touchMenu.length > 0) {
-		// generateTouchMenuHelpers(origin, touchMenuElements);
 
 		touchMenu.each(function() {
 			var touchMenu = $(this);
@@ -42,26 +41,6 @@ function setTouchMenu(origin) {
 				});
 			}
 		});
-	}
-}
-
-function generateTouchMenuHelpers(origin, touchMenuElements) {
-	if(typeof origin === 'undefined') {
-		origin = $('body');
-	} else if(origin.length === 0) {
-		origin = $('body');
-	}
-
-	if(origin.length > 0) {
-		var touchMenuDocumentHelperWrapper = $('.' + touchMenuElements.helperWrapper);
-		if(touchMenuDocumentHelperWrapper.length === 0) {
-			origin.wrapInner('<div class="' + touchMenuElements.helperWrapper + '"></div>');
-		}
-
-		var touchMenuDocumentHelper = $('.' + touchMenuElements.helper);
-		if(touchMenuDocumentHelper.length === 0) {
-			origin.wrapInner('<div class="' + touchMenuElements.helper + '"></div>');
-		}
 	}
 }
 
