@@ -1,0 +1,92 @@
+@mixin touch-menu-button-style(
+	$selector:						null,
+	$background: 					false,
+	$background--hover:				false,
+	$background--active:			false,
+	$border:						false,
+	$border-color--hover:			false,
+	$border-color--active:			false,
+	$border-radius:					false,
+	$border-radius--hover:			false,
+	$border-radius--active:			false,
+	$glyph-color:					false,
+	$glyph-color--hover:			false,
+	$glyph-color--active:			false
+) {
+	.touch-menu-button {
+		&#{$selector} {
+			@if $background != false {
+				background: $background;
+			}
+
+			@if $border != false {
+				border: $border;
+			}
+
+			@if $border-radius != false {
+				border-radius: $border-radius;
+			}
+
+			.no-touchevents &:hover {
+				@if $background--hover != false {
+					background: $background--hover;
+				}
+
+				@if $border-color--hover != false {
+					border-color: $border-color--hover;
+				}
+
+				@if $border-radius--hover != false {
+					border-radius: $border-radius--hover;
+				}
+			}
+
+			.__touch-menu--active &,
+			.no-touchevents .__touch-menu--active & {
+				@if $background--active != false {
+					background: $background--active;
+				}
+
+				@if $border-color--active != false {
+					border-color: $border-color--active;
+				}
+
+				@if $border-radius--active != false {
+					border-radius: $border-radius--active;
+				}
+			}
+
+			.touch-menu-button-glyph {
+				@if $glyph-color != false {
+					border-bottom-color: $glyph-color;
+
+					&:before,
+					&:after {
+						background-color: $glyph-color;
+					}
+				}
+
+				.no-touchevents &:hover, {
+					@if $glyph-color--hover != false {
+						border-bottom-color: $glyph-color--hover;
+
+						&:before,
+						&:after {
+							background-color: $glyph-color--hover;
+						}
+					}
+				}
+
+				.__touch-menu--active &,
+				.no-touchevents .__touch-menu--active & {
+					@if $glyph-color--active != false {
+						&:before,
+						&:after {
+							background-color: $glyph-color--active;
+						}
+					}
+				}
+			}
+		}
+	}
+}

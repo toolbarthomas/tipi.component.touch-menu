@@ -1,0 +1,18 @@
+{
+  "name": "tipi.component.touch-menu",
+  "homepage": "https://github.com/toolbarthomas/tipi.component.touch-menu",
+  "authors": [
+    "Thomas van der Velde <contact@toolbarthomas.net>"
+  ],
+  "description": "Touch menu component for Tipi ",
+  "keywords": [
+    "toolbarthomas",
+    "modular",
+    "tipi",
+    "touch menu",
+    "sticky",
+    "hamburger"
+  ],
+  "license": "MIT",
+  "main": "_tipi.component.touch-menu.scss"
+}
