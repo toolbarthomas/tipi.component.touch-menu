@@ -39,6 +39,9 @@ function setTouchMenu(origin) {
 						touchMenu.trigger('tipi.touchMenu.toggle', [touchMenu]);
 					}
 				});
+
+				//Trigger tipi.UPDATE so we can UPDATE OTHER components except this one.
+				$(document).trigger('tipi.UPDATE', [true]);
 			}
 		});
 	}
