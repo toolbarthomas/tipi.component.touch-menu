@@ -163,6 +163,7 @@
 			max-width: $touch-menu-drawer-max-width;
 			background: $touch-menu-drawer-background;
 			padding: $touch-menu-drawer-gutter;
+			z-index: $touch-menu-drawer-z-index;
 
 			@if $touch-menu-transitions != false {
 				@include transition(
