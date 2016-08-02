@@ -39,10 +39,22 @@
 				@if $border-radius--hover != false {
 					border-radius: $border-radius--hover;
 				}
+
+
+				@if $glyph-color--hover != false {
+					.touch-menu-button-glyph {
+						border-bottom-color: $glyph-color--hover;
+
+						&:before,
+						&:after {
+							background-color: $glyph-color--hover;
+						}
+					}
+				}
 			}
 
 			.__touch-menu--active &,
-			.no-touchevents .__touch-menu--active & {
+			.no-touchevents .__touch-menu--active &:hover {
 				@if $background--active != false {
 					background: $background--active;
 				}
@@ -54,6 +66,15 @@
 				@if $border-radius--active != false {
 					border-radius: $border-radius--active;
 				}
+
+				.touch-menu-button-glyph {
+					@if $glyph-color--active != false {
+						&:before,
+						&:after {
+							background-color: $glyph-color--active;
+						}
+					}
+				}
 			}
 
 			.touch-menu-button-glyph {
@@ -63,27 +84,6 @@
 					&:before,
 					&:after {
 						background-color: $glyph-color;
-					}
-				}
-
-				.no-touchevents &:hover, {
-					@if $glyph-color--hover != false {
-						border-bottom-color: $glyph-color--hover;
-
-						&:before,
-						&:after {
-							background-color: $glyph-color--hover;
-						}
-					}
-				}
-
-				.__touch-menu--active &,
-				.no-touchevents .__touch-menu--active & {
-					@if $glyph-color--active != false {
-						&:before,
-						&:after {
-							background-color: $glyph-color--active;
-						}
 					}
 				}
 			}
