@@ -110,8 +110,6 @@ function toggleTouchMenu(touchMenu, touchMenuElements, touchMenuStates) {
 function sizeTouchMenuDrawer(touchMenu, touchMenuElements) {
 	var touchMenuDrawer = getTouchMenuElement('drawer', touchMenu, touchMenuElements);
 
-	console.log('aaa');
-
 	touchMenuDrawer.css({
 		'min-height' : $(window).outerHeight()
 	});
