@@ -16,6 +16,37 @@ function setTouchMenu(origin) {
 	var touchMenu = $('.' + touchMenuElements.root).not('.' + touchMenuStates.ready);
 	if(touchMenu.length > 0) {
 
+		touchMenu.on({
+			'tipi.touchMenu.RESIZE' : function(event, touchMenu) {
+				sizeTouchMenuDrawer(touchMenu, touchMenuElements);
+
+				//Trigger tipi.UPDATE so we can UPDATE OTHER components except this one.
+				$(document).trigger('tipi.UPDATE', [false]);
+			}
+		});
+
+		$(document).on({
+			'tipi.UPDATE' : function(event, external) {
+
+				if(typeof external !== undefined) {
+					if(external === true) {
+						touchMenu.trigger('tipi.touchMenu.RESIZE', [touchMenu]);
+					}
+				}
+
+			}
+		});
+
+		var updateEvent;
+		$(window).on({
+			resize : function() {
+				clearTimeout(updateEvent);
+				updateEvent = setTimeout(function() {
+					touchMenu.trigger('tipi.touchMenu.RESIZE', [touchMenu]);
+				}, 100);
+			}
+		});
+
 		touchMenu.each(function() {
 			var touchMenu = $(this);
 			var touchMenuButton = getTouchMenuElement('button', touchMenu, touchMenuElements);
@@ -74,4 +105,14 @@ function getTouchMenuElement(type, origin, elements) {
 
 function toggleTouchMenu(touchMenu, touchMenuElements, touchMenuStates) {
 	touchMenu.toggleClass(touchMenuStates.active);
+}
+
+function sizeTouchMenuDrawer(touchMenu, touchMenuElements) {
+	var touchMenuDrawer = getTouchMenuElement('drawer', touchMenu, touchMenuElements);
+
+	console.log('aaa');
+
+	touchMenuDrawer.css({
+		'min-height' : $(window).outerHeight()
+	});
 }
