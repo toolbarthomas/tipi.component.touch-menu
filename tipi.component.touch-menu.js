@@ -15,28 +15,6 @@ function setTouchMenu(origin) {
 
 	var touchMenu = $('.' + touchMenuElements.root).not('.' + touchMenuStates.ready);
 	if(touchMenu.length > 0) {
-
-		touchMenu.on({
-			'tipi.touchMenu.RESIZE' : function(event, touchMenu) {
-				sizeTouchMenuDrawer(touchMenu, touchMenuElements);
-
-				//Trigger tipi.UPDATE so we can UPDATE OTHER components except this one.
-				$(document).trigger('tipi.UPDATE', [false]);
-			}
-		});
-
-		$(document).on({
-			'tipi.UPDATE' : function(event, external) {
-
-				if(typeof external !== undefined) {
-					if(external === true) {
-						touchMenu.trigger('tipi.touchMenu.RESIZE', [touchMenu]);
-					}
-				}
-
-			}
-		});
-
 		var updateEvent;
 		$(window).on({
 			resize : function() {
@@ -57,8 +35,11 @@ function setTouchMenu(origin) {
 				touchMenu.addClass(touchMenuStates.ready);
 
 				touchMenu.on({
-					'tipi.touchMenu.toggle' : function(event, touchMenu) {
+					'tipi.touchMenu.TOGGLE' : function(event, touchMenu) {
 						toggleTouchMenu(touchMenu, touchMenuElements, touchMenuStates);
+					},
+					'tipi.touchMenu.RESIZE' : function(event, touchMenu) {
+						sizeTouchMenuDrawer(touchMenu, touchMenuElements);
 					}
 				});
 
@@ -67,12 +48,12 @@ function setTouchMenu(origin) {
 						event.preventDefault();
 
 						var touchMenu = getTouchMenuElement('root', $(this), touchMenuElements);
-						touchMenu.trigger('tipi.touchMenu.toggle', [touchMenu]);
+						touchMenu.trigger('tipi.touchMenu.TOGGLE', [touchMenu]);
 					}
 				});
 
 				//Trigger tipi.UPDATE so we can UPDATE OTHER components except this one.
-				$(document).trigger('tipi.UPDATE', [true]);
+				touchMenu.trigger('tipi.touchMenu.RESIZE', [touchMenu]);
 			}
 		});
 	}
