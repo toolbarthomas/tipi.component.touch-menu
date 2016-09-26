@@ -18,7 +18,7 @@
 
 		@if $touch-menu-transitions != false {
 			@include transition(
-				(all $touch-menu-transition-speed ease-out 0s)
+				(all $touch-menu-transition-speed $touch-menu-transition-timing $touch-menu-transition-delay)
 			);
 		}
 
@@ -66,7 +66,7 @@
 			&::before,
 			&::after {
 				@include transition(
-					(all $touch-menu-transition-speed ease-out 0s)
+					(all $touch-menu-transition-speed $touch-menu-transition-timing $touch-menu-transition-delay)
 				);
 			}
 		}
@@ -123,9 +123,9 @@
 
 		@if $touch-menu-transitions != false {
 			@include transition(
-				(visibility 0s linear $touch-menu-transition-speed),
-				(opacity $touch-menu-transition-speed $touch-menu-transition-timing 0s),
-				(padding-top $touch-menu-transition-speed $touch-menu-transition-timing 0s)
+				(visibility (0ms + $touch-menu-transition-delay) linear ($touch-menu-transition-delay + $touch-menu-transition-speed)),
+				(opacity $touch-menu-transition-speed $touch-menu-transition-timing $touch-menu-transition-delay),
+				(padding-top $touch-menu-transition-speed $touch-menu-transition-timing $touch-menu-transition-delay)
 			)
 		}
 
@@ -143,47 +143,44 @@
 
 			@if $touch-menu-transitions != false {
 				@include transition(
-					(visibility 0s linear 0s),
-					(opacity $touch-menu-transition-speed $touch-menu-transition-timing 0s),
-					(padding-top $touch-menu-transition-speed $touch-menu-transition-timing 0s)
+					(visibility (0ms + $touch-menu-transition-delay) linear (0ms + $touch-menu-transition-delay)),
+					(opacity $touch-menu-transition-speed $touch-menu-transition-timing $touch-menu-transition-delay),
+					(padding-top $touch-menu-transition-speed $touch-menu-transition-timing $touch-menu-transition-delay)
 				)
 			}
 		}
 	}
 
 	.touch-menu-drawer {
-		.__touch-menu--ready & {
-			position: fixed;
-			top: 0;
-			height: 100%;
-			overflow-y: auto;
-			-ms-overflow-style: -ms-autohiding-scrollbar;
-			-webkit-overflow-scrolling: touch;
-			width: 100%;
-			max-width: $touch-menu-drawer-max-width;
-			background: $touch-menu-drawer-background;
-			padding: $touch-menu-drawer-gutter;
-			z-index: $touch-menu-drawer-z-index;
+		position: fixed;
+		top: 0;
+		height: 100%;
+		overflow-y: auto;
+		-ms-overflow-style: -ms-autohiding-scrollbar;
+		-webkit-overflow-scrolling: touch;
+		width: 100%;
+		max-width: $touch-menu-drawer-max-width;
+		background: $touch-menu-drawer-background;
+		padding: $touch-menu-drawer-gutter;
+		z-index: $touch-menu-drawer-z-index;
 
-			@if $touch-menu-transitions != false {
-				@include transition(
-					(transform $touch-menu-transition-speed $touch-menu-transition-timing 0s)
-				)
-			}
-
-			@if $touch-menu-drawer-align == 'left' {
-				left: 0;
-				@include transform(
-					translateX(-100%)
-				);
-			} @else {
-				right: 0;
-				@include transform(
-					translateX(100%)
-				);
-			}
+		@if $touch-menu-transitions != false {
+			@include transition(
+				(transform $touch-menu-transition-speed $touch-menu-transition-timing $touch-menu-transition-delay)
+			)
 		}
 
+		@if $touch-menu-drawer-align == 'left' {
+			left: 0;
+			@include transform(
+				translateX(-100%)
+			);
+		} @else {
+			right: 0;
+			@include transform(
+				translateX(100%)
+			);
+		}
 
 		.__touch-menu--active & {
 			@include transform(

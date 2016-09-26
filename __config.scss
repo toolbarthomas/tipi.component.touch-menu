@@ -1,7 +1,8 @@
 $touch-menu: 									true !global;
 $touch-menu-transitions:						true !default;
 $touch-menu-transition-speed:					200ms !default;
-$touch-menu-transition-timing:					ease-in-out;
+$touch-menu-transition-timing:					ease-in-out !default;
+$touch-menu-transition-delay:					0ms !default;
 
 $touch-menu-button-size: 						48px !default;
 $touch-menu-button-z-index:						350 !default;
