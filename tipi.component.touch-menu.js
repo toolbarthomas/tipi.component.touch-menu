@@ -15,16 +15,16 @@ function setTouchMenu(origin) {
 
 	var touchMenu = $('.' + touchMenuElements.root).not('.' + touchMenuStates.ready);
 	if(touchMenu.length > 0) {
-		var documentWidth = $(document).width();
+		var windowWidth = $(window).height();
 		var updateEvent;
 		$(window).on({
 			resize : function() {
 				clearTimeout(updateEvent);
 				updateEvent = setTimeout(function() {
-					if(documentWidth != $(document).width()) {
+					if(windowWidth != $(window).height()) {
 						touchMenu.trigger('tipi.touchMenu.RESIZE', [touchMenu]);
 					}
-					documentWidth = $(document).width();
+					windowWidth = $(window).height();
 				}, 100);
 			}
 		});
