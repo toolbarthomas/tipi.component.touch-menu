@@ -29,6 +29,7 @@
 	$glyph-width: 16px,
 	$glyph-height: 16px,
 	$glyph-stroke-width: 2px,
+	$glyph-ellipsis-width: 4px,
 	$hover_prefix: '.no-touchevents',
 	$transitions: false,
 	$transition-timing: 240ms,
@@ -65,6 +66,13 @@
 			@if $box-shadow != false
 			{
 				box-shadow: $box-shadow;
+			}
+
+			@if $transitions != false
+			{
+				@include transition(
+					(all $transition-duration $transition-timing $transition-delay)
+				);
 			}
 
 			#{$hover_prefix} &:hover {
@@ -110,13 +118,6 @@
 					box-shadow: $box-shadow--active;
 				}
 			}
-
-			@if $transitions != false
-			{
-				@include transition(
-					(all $transition-duration $transition-timing $transition-delay)
-				);
-			}
 		}
 	}
 
@@ -129,6 +130,10 @@
 
 	.touch-menu-toggle-glyph-part {
 		#{$selector} & {
+			width: 100%;
+			height: $glyph-stroke-width;
+			left: 0;
+
 			@if $glyph-background-color != false {
 				background-color: $glyph-background-color;
 			}
@@ -148,9 +153,12 @@
 				box-shadow: $glyph-box-shadow;
 			}
 
-			width: 100%;
-			height: $glyph-stroke-width;
-			left: 0;
+			@if $transitions != false
+			{
+				@include transition(
+					(all $transition-duration $transition-timing $transition-delay)
+				);
+			}
 
 			&:nth-child(1) {
 				top: 0;
@@ -165,48 +173,14 @@
 				top: 100%;
 				margin-top: 0 - $glyph-stroke-width;
 			}
+		}
 
-			@if $transitions != false
+		#{$hover_prefix} #{$selector}:hover & {
+			@if $glyph-background-color--hover != false
 			{
-				@include transition(
-					(all $transition-duration $transition-timing $transition-delay)
-				);
-			}
-		}
-
-		#{$selector}.touch-menu-toggle--ellipsis & {
-			width: $glyph-stroke-width;
-			height: $glyph-stroke-width;
-			top: 50%;
-			margin-top: - ($glyph-stroke-width / 2);
-
-			&:nth-child(1) {
-				left: 0;
+				background-color: $glyph-background-color--hover;
 			}
 
-			&:nth-child(2) {
-				left: 50%;
-				margin-left: 0 - ($glyph-stroke-width / 2);
-			}
-
-			&:nth-child(3) {
-				left: 100%;
-				margin-left: 0 - $glyph-stroke-width;
-			}
-		}
-
-
-		#{$selector}.__touch-menu-toggle--active.touch-menu-toggle--ellipsis & {
-			&:nth-child(1),
-			&:nth-child(3) {
-				left: 50%;
-				margin: 0;
-				width: $glyph-width;
-				height: $glyph-stroke-width;
-			}
-		}
-
-		#{$hover_prefix} #{$selector}.__touch-menu-toggle:hover & {
 			@if $glyph-border-color--hover != false
 			{
 				border-color: $glyph-border-color--hover;
@@ -224,6 +198,10 @@
 		}
 
 		#{$selector}.__touch-menu-toggle--active & {
+			@if $glyph-background-color--active != false {
+				background-color: $glyph-background-color--active;
+			}
+
 			@if $glyph-border-color--active != false
 			{
 				border-color: $glyph-border-color--active;
@@ -237,6 +215,37 @@
 			@if $glyph-box-shadow--active != false
 			{
 				box-shadow: $glyph-box-shadow--active;
+			}
+		}
+
+		#{$selector}.touch-menu-toggle--ellipsis & {
+			width: $glyph-ellipsis-width;
+			height: $glyph-ellipsis-width;
+			top: 50%;
+			margin-top: - ($glyph-ellipsis-width / 2);
+
+			&:nth-child(1) {
+				left: 0;
+			}
+
+			&:nth-child(2) {
+				left: 50%;
+				margin-left: 0 - ($glyph-ellipsis-width / 2);
+			}
+
+			&:nth-child(3) {
+				left: 100%;
+				margin-left: 0 - $glyph-ellipsis-width;
+			}
+		}
+
+		#{$selector}.__touch-menu-toggle--active.touch-menu-toggle--ellipsis & {
+			&:nth-child(1),
+			&:nth-child(3) {
+				left: 50%;
+				margin: 0;
+				width: $glyph-width;
+				height: $glyph-stroke-width;
 			}
 		}
 	}
