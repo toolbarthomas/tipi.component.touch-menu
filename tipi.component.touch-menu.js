@@ -1,101 +1,96 @@
-function setTouchMenu(origin) {
-	var touchMenuElements = {
-		root 				: 'touch-menu',
-		button 				: 'touch-menu-button',
-		dropdown 			: 'touch-menu-dropdown',
-		drawer 				: 'touch-menu-drawer',
-		helper 				: 'touch-menu-document-helper',
-		helperWrapper 		: 'touch-menu-document-helper-wrapper'
+(function(win, doc, $) {
+	var data = {
+		elements : {
+			toggle : 'touch-menu-toggle',
+			drawer : 'touch-menu-drawer',
+			helper : 'touch-menu-document-helper',
+			helperWrapper : 'touch-menu-document-helper-wrapper'
+		},
+		attributes : {
+			drawer : 'touch-menu-drawer'
+		},
+		states : {
+			toggle_ready : '__touch-menu-toggle--ready',
+			toggle_active : '__touch-menu-toggle--active',
+			drawer_ready : '__touch-menu-drawer--ready',
+			drawer_active : '__touch-menu-drawer--active'
+		}
 	};
 
-	var touchMenuStates = {
-		ready 	: '__touch-menu--ready',
-		active	: '__touch-menu--active'
-	};
 
-	var touchMenu = $('.' + touchMenuElements.root).not('.' + touchMenuStates.ready);
-	if(touchMenu.length > 0) {
-		var windowHeight = $(window).height();
-		var updateEvent;
-		$(window).on({
-			resize : function() {
-				clearTimeout(updateEvent);
-				updateEvent = setTimeout(function() {
-					if(windowHeight != $(window).height()) {
-						touchMenu.trigger('tipi.touchMenu.RESIZE', [touchMenu]);
-					}
-					windowHeight = $(window).height();
-				}, 100);
+	window.setTouchMenu = function() {
+		var touch_menu_toggle = $('.' + data.elements.toggle).not(data.states.toggle_ready);
+
+		touch_menu_toggle.each(function() {
+			var touch_menu_toggle = $(this);
+
+			var touch_menu_drawer = getTouchMenuDrawer(touch_menu_toggle);
+			if(touch_menu_drawer.length === 0)
+			{
+				return;
 			}
+
+			touch_menu_toggle.on({
+				click : function(event) {
+					event.preventDefault();
+
+					if(touch_menu_toggle.hasClass(data.states.toggle_active))
+					{
+						$(document).trigger('tipi.touchMenu.close', [touch_menu_toggle, touch_menu_drawer]);
+					}
+					else
+					{
+						$(document).trigger('tipi.touchMenu.open', [touch_menu_toggle, touch_menu_drawer]);
+					}
+
+				}
+			});
+
+			touch_menu_toggle.addClass(data.states.toggle_ready);
+			touch_menu_drawer.addClass(data.states.drawer_ready);
 		});
 
-		touchMenu.each(function() {
-			var touchMenu = $(this);
-			var touchMenuButton = getTouchMenuElement('button', touchMenu, touchMenuElements);
-			var touchMenuDropdown = getTouchMenuElement('dropdown', touchMenu, touchMenuElements);
-			var touchMenuDrawer = getTouchMenuElement('drawer', touchMenu, touchMenuElements);
-
-			if(touchMenuDropdown.length > 0 || touchMenuDrawer.length > 0) {
-				touchMenu.addClass(touchMenuStates.ready);
-
-				touchMenu.on({
-					'tipi.touchMenu.TOGGLE' : function(event, touchMenu) {
-						toggleTouchMenu(touchMenu, touchMenuElements, touchMenuStates);
-					},
-					'tipi.touchMenu.RESIZE' : function(event, touchMenu) {
-						sizeTouchMenuDrawer(touchMenu, touchMenuElements);
-					}
-				});
-
-				touchMenuButton.on({
-					click : function(event) {
-						event.preventDefault();
-
-						var touchMenu = getTouchMenuElement('root', $(this), touchMenuElements);
-						touchMenu.trigger('tipi.touchMenu.TOGGLE', [touchMenu]);
-					}
-				});
-
-				//Trigger tipi.UPDATE so we can UPDATE OTHER components except this one.
-				touchMenu.trigger('tipi.touchMenu.RESIZE', [touchMenu]);
+		$(document).on({
+			'tipi.touchMenu.open' : function(event, toggle, drawer) {
+				toggle.addClass(data.states.toggle_active);
+				drawer.removeClass(data.states.toggle_active);
+			},
+			'tipi.touchMenu.close' : function(event, toggle, drawer) {
+				toggle.removeClass(data.states.toggle_active);
+				drawer.removeClass(data.states.toggle_active);
 			}
 		});
 	}
-}
 
-function getTouchMenuElement(type, origin, elements) {
-	if(typeof type != 'undefined' && typeof origin != 'undefined') {
-		var element;
-
-		switch(type) {
-			case 'root':
-				element = origin.parents('.' + elements.root).first();
-			break;
-			case 'button':
-				element = origin.find('.' + elements.button).first();
-			break;
-			case 'dropdown':
-				element = origin.find('.' + elements.dropdown).first();
-			break;
-			case 'drawer':
-				element = origin.find('.' + elements.drawer).first();
-			break;
-			default:
-				element = undefined;
+	function getTouchMenuDrawer(toggle) {
+		if(typeof toggle === 'undefined')
+		{
+			return;
 		}
 
-		return element;
+		if(toggle.length === 0)
+		{
+			return;
+		}
+
+		var output = {
+			length : 0
+		};
+
+		var drawer = toggle.data(data.attributes.drawer);
+		if(typeof drawer === 'undefined') {
+			drawer = $('.' + data.elements.drawer);
+		}
+		else {
+			drawer = $(drawer);
+		}
+
+		if(drawer.length > 0)
+		{
+			output = drawer;
+		}
+
+		return output;
 	}
-}
 
-function toggleTouchMenu(touchMenu, touchMenuElements, touchMenuStates) {
-	touchMenu.toggleClass(touchMenuStates.active);
-}
-
-function sizeTouchMenuDrawer(touchMenu, touchMenuElements) {
-	var touchMenuDrawer = getTouchMenuElement('drawer', touchMenu, touchMenuElements);
-
-	touchMenuDrawer.css({
-		'min-height' : $(window).outerHeight()
-	});
-}
+})( window.jQuery(window), window.jQuery(document), window.jQuery);
