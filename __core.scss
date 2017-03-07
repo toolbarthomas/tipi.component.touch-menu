@@ -48,242 +48,26 @@
 		}
 	}
 
-				// .touch-menu-drawer {
-				// 	display: none;
-				// 	position: fixed;
-				// 	top: 0;
-				// 	height: 100%;
-				// 	width: 100%;
-				// 	overflow: hidden;
+	.touch-menu-drawer {
+		display: none;
+		position: fixed;
+		top: 0;
+		height: 100%;
+		width: 100%;
+		overflow: hidden;
 
-				// 	@if unquote($touch-menu-default-alignment) == left {
-				// 		left: 0;
-				// 		@include transform(
-				// 			translateX(-100%)
-				// 		);
-				// 	}
-				// 	@else {
-				// 		right: 0;
-				// 		@include transform(
-				// 			translateX(100%)
-				// 		);
-				// 	}
+		&.__touch-menu-drawer--ready {
+			display: block;
+		}
 
-				// 	.__touch-menu-drawer--active & {
-				// 		@include transform(
-				// 			translateX(0)
-				// 		);
-				// 	}
-				// }
+		&.__touch-menu-drawer--active {
+			@include transform(
+				translateX(0)
+			);
+		}
+	}
 
-				// .touch-menu-drawer--reverse {
-				// 	@if unquote($touch-menu-default-alignment) == left {
-				// 		left: auto;
-				// 		right: 0;
-				// 		@include transform(
-				// 			translateX(100%)
-				// 		);
-				// 	}
-				// 	@else {
-				// 		right: auto;
-				// 		left: 0;
-				// 		@include transform(
-				// 			translateX(-100%)
-				// 		);
-				// 	}
-				// }
-
-				// .touch-menu-drawer-wrapper {
-				// 	position: relative;
-				// }
-
-	// .touch-menu {
-	// 	display: inline-block;
-	// 	vertical-align: top;
-	// 	position: relative;
-	// }
-
-	// .touch-menu-button {
-	// 	display: block;
-	// 	visibility: hidden;
-	// 	position: relative;
-	// 	width: $touch-menu-button-size;
-	// 	height: $touch-menu-button-size;
-	// 	overflow: hidden;
-	// 	cursor: pointer;
-	// 	z-index: $touch-menu-button-z-index;
-	// 	@include user-select(none);
-
-	// 	@if $touch-menu-transitions != false {
-	// 		@include transition(
-	// 			(all $touch-menu-transition-speed $touch-menu-transition-timing $touch-menu-transition-delay)
-	// 		);
-	// 	}
-
-	// 	.__touch-menu--ready & {
-	// 		visibility: visible;
-	// 	}
-	// }
-
-	// .touch-menu-button-glyph {
-	// 	display: block;
-	// 	position: absolute;
-	// 	top: 50%;
-	// 	left: 50%;
-	// 	margin-top: 0 - ( ( $touch-menu-button-glyph-height / 4 ) - ($touch-menu-button-glyph-size/2) ) ;
-	// 	@include transform(
-	// 		translate(-50%, -50%)
-	// 	);
-	// 	width: $touch-menu-button-glyph-width;
-	// 	height: $touch-menu-button-glyph-height / 2;
-	// 	border-bottom: solid $touch-menu-button-glyph-size;
-
-	// 	&::before,
-	// 	&::after {
-	// 		position: absolute;
-	// 		display: block;
-	// 		content: " ";
-	// 		width: 100%;
-	// 		height: $touch-menu-button-glyph-size;
-	// 	}
-
-	// 	&:before {
-	// 		bottom: 100%;
-	// 		left: 0;
-	// 		margin-bottom: 0 - $touch-menu-button-glyph-size / 2;
-	// 	}
-
-	// 	&:after {
-	// 		top: 200%;
-	// 		left: 0;
-	// 		margin-top: $touch-menu-button-glyph-size / 2;
-	// 	}
-
-	// 	@if $touch-menu-transitions != false {
-	// 		&,
-	// 		&::before,
-	// 		&::after {
-	// 			@include transition(
-	// 				(all $touch-menu-transition-speed $touch-menu-transition-timing $touch-menu-transition-delay)
-	// 			);
-	// 		}
-	// 	}
-
-	// 	.__touch-menu--active & {
-	// 		border-bottom-color: transparent !important;
-
-	// 		margin-top: 0;
-
-	// 		&:before,
-	// 		&:after {
-	// 			top: 50%;
-	// 			width: 124%;
-	// 			left: 50%;
-	// 			margin: 0;
-	// 		}
-
-	// 		&:before {
-	// 			bottom: auto;
-	// 			@include transform(
-	// 				translate(-50%)
-	// 				rotate(135deg)
-	// 			);
-	// 		}
-
-	// 		&:after {
-	// 			@include transform(
-	// 				translate(-50%)
-	// 				rotate(-135deg)
-	// 			);
-	// 		}
-	// 	}
-	// }
-
-	// .touch-menu-dropdown {
-	// 	display: none;
-	// 	position: absolute;
-	// 	visibility: hidden;
-	// 	opacity: 0;
-	// 	text-align: left;
-	// 	width: $touch-menu-dropdown-width;
-	// 	padding-top: 0;
-
-	// 	@if $touch-menu-dropdown-align == 'left' {
-	// 		left: 0;
-	// 	} @else if $touch-menu-dropdown-align == 'right' {
-	// 		right: 0;
-	// 	} @else {
-	// 		left: 50%;
-	// 		@include transform(
-	// 			translateX(-50%)
-	// 		);
-	// 	}
-
-	// 	@if $touch-menu-transitions != false {
-	// 		@include transition(
-	// 			(visibility (0ms + $touch-menu-transition-delay) linear ($touch-menu-transition-delay + $touch-menu-transition-speed)),
-	// 			(opacity $touch-menu-transition-speed $touch-menu-transition-timing $touch-menu-transition-delay),
-	// 			(padding-top $touch-menu-transition-speed $touch-menu-transition-timing $touch-menu-transition-delay)
-	// 		)
-	// 	}
-
-	// 	.__touch-menu--ready & {
-	// 		display: block;
-	// 	}
-
-	// 	.__touch-menu--active & {
-	// 		opacity: 1;
-	// 		visibility: visible;
-
-	// 		@if $touch-menu-dropdown-gutter != false {
-	// 			padding-top: $touch-menu-dropdown-gutter;
-	// 		}
-
-	// 		@if $touch-menu-transitions != false {
-	// 			@include transition(
-	// 				(visibility (0ms + $touch-menu-transition-delay) linear (0ms + $touch-menu-transition-delay)),
-	// 				(opacity $touch-menu-transition-speed $touch-menu-transition-timing $touch-menu-transition-delay),
-	// 				(padding-top $touch-menu-transition-speed $touch-menu-transition-timing $touch-menu-transition-delay)
-	// 			)
-	// 		}
-	// 	}
-	// }
-
-	// .touch-menu-drawer {
-	// 	position: fixed;
-	// 	top: 0;
-	// 	height: 100%;
-	// 	overflow-y: auto;
-	// 	-ms-overflow-style: -ms-autohiding-scrollbar;
-	// 	-webkit-overflow-scrolling: touch;
-	// 	width: 100%;
-	// 	max-width: $touch-menu-drawer-max-width;
-	// 	background: $touch-menu-drawer-background;
-	// 	padding: $touch-menu-drawer-gutter;
-	// 	z-index: $touch-menu-drawer-z-index;
-
-	// 	@if $touch-menu-transitions != false {
-	// 		@include transition(
-	// 			(transform $touch-menu-transition-speed $touch-menu-transition-timing $touch-menu-transition-delay)
-	// 		)
-	// 	}
-
-	// 	@if $touch-menu-drawer-align == 'left' {
-	// 		left: 0;
-	// 		@include transform(
-	// 			translateX(-100%)
-	// 		);
-	// 	} @else {
-	// 		right: 0;
-	// 		@include transform(
-	// 			translateX(100%)
-	// 		);
-	// 	}
-
-	// 	.__touch-menu--active & {
-	// 		@include transform(
-	// 			translateX(0)
-	// 		);
-	// 	}
-	// }
+	.touch-menu-drawer-wrapper {
+		position: relative;
+	}
 }

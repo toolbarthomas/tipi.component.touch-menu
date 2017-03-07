@@ -1,0 +1,40 @@
+@mixin touch-menu-drawer-style(
+	$selector: null,
+	$max-width: false,
+	$align: left,
+	$transitions: false,
+	$transition-timing: 240ms,
+	$transition-duration: ease-in-out,
+	$transition-delay: 0ms
+) {
+	.touch-menu-drawer {
+		&#{$selector} {
+			@if $max-width != false
+			{
+				max-width: $max-width;
+			}
+
+			@if $align == left
+			{
+				left: 0;
+				@include transform(
+					translateX(-100%)
+				);
+			}
+			@else
+			{
+				right: 0;
+				@include transform(
+					translateX(100%)
+				);
+			}
+
+			@if $transitions != false
+			{
+				@include transition(
+					(transform $transition-duration $transition-timing $transition-delay)
+				);
+			}
+		}
+	}
+}

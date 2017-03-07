@@ -38,6 +38,8 @@
 ) {
 	.touch-menu-toggle {
 		&#{$selector} {
+			$this: &;
+
 			@if $width != false
 			{
 				width: $width;
@@ -175,7 +177,7 @@
 			}
 		}
 
-		#{$hover_prefix} #{$selector}:hover & {
+		#{$hover_prefix} .touch-menu-toggle#{$selector}:hover & {
 			@if $glyph-background-color--hover != false
 			{
 				background-color: $glyph-background-color--hover;
@@ -197,7 +199,7 @@
 			}
 		}
 
-		#{$selector}.__touch-menu-toggle--active & {
+		.touch-menu-toggle#{$selector}.__touch-menu-toggle--active & {
 			@if $glyph-background-color--active != false {
 				background-color: $glyph-background-color--active;
 			}
@@ -218,7 +220,7 @@
 			}
 		}
 
-		#{$selector}.touch-menu-toggle--ellipsis & {
+		.touch-menu-toggle#{$selector}.touch-menu-toggle--ellipsis & {
 			width: $glyph-ellipsis-width;
 			height: $glyph-ellipsis-width;
 			top: 50%;
@@ -239,7 +241,7 @@
 			}
 		}
 
-		#{$selector}.__touch-menu-toggle--active.touch-menu-toggle--ellipsis & {
+		.touch-menu-toggle#{$selector}.__touch-menu-toggle--active.touch-menu-toggle--ellipsis & {
 			&:nth-child(1),
 			&:nth-child(3) {
 				left: 50%;
