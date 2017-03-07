@@ -35,12 +35,6 @@
 			}
 		});
 
-		$(window).on({
-			scroll : function() {
-				console.log('aa');
-			}
-		});
-
 		touch_menu_toggle.each(function() {
 			var toggle = $(this);
 
