@@ -1,105 +1,111 @@
 {% extends "layouts/base.twig" %}
 
 {% block content %}
-<<<<<<< Updated upstream
-<section id="touch-menu" class="fluid">
-    <div class="wrapper">
-        <div class="hide--smartphone">
-            <div class="touch-menu-toggle touch-menu-toggle--ellipsis">
-                <div class="touch-menu-toggle-glyph">
-                    <span class="touch-menu-toggle-glyph-part"></span>
-                    <span class="touch-menu-toggle-glyph-part"></span>
-                    <span class="touch-menu-toggle-glyph-part"></span>
+    <section id="touch-menu" class="fluid">
+        <div class="wrapper">
+            <h1>Touch-menu</h1>
+
+            <h2>Single touch-menu example</h2>
+            <div class="element-group element-group--vertical">
+                <div class="element-group-item">
+                    <div class="combined combined--middle">
+                        <div class="combined-aside">
+                            <div class="touch-menu-toggle">
+                                <div class="touch-menu-toggle-glyph">
+                                    <span class="touch-menu-toggle-glyph-part"></span>
+                                    <span class="touch-menu-toggle-glyph-part"></span>
+                                    <span class="touch-menu-toggle-glyph-part"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="combined-body">
+                            <p>Touch menu toggle default styling</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="element-group-item">
+                    <div class="combined combined--middle">
+                        <div class="combined-aside">
+                            <div class="touch-menu-toggle touch-menu-toggle--ellipsis">
+                                <div class="touch-menu-toggle-glyph">
+                                    <span class="touch-menu-toggle-glyph-part"></span>
+                                    <span class="touch-menu-toggle-glyph-part"></span>
+                                    <span class="touch-menu-toggle-glyph-part"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="combined-body">
+                            <p>Touch menu toggle ellipsis styling</p>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div class="touch-menu-toggle touch-menu-toggle--ellipsis">
-            <div class="touch-menu-toggle-glyph">
-                <span class="touch-menu-toggle-glyph-part"></span>
-                <span class="touch-menu-toggle-glyph-part"></span>
-                <span class="touch-menu-toggle-glyph-part"></span>
+            <div class="touch-menu-drawer">
+                <h3>Touch-menu drawer #1</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            </div>
+
+            <h2>Open a specific touch menu drawer</h2>
+            <div class="element-group element-group--vertical">
+                <div class="element-group-item">
+                    <div class="combined combined--middle">
+                        <div class="combined-aside">
+                            <div class="touch-menu-toggle" data-touch-menu-drawer="#drawer_2">
+                                <div class="touch-menu-toggle-glyph">
+                                    <span class="touch-menu-toggle-glyph-part"></span>
+                                    <span class="touch-menu-toggle-glyph-part"></span>
+                                    <span class="touch-menu-toggle-glyph-part"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="combined-body">
+                            <p>Open touch menu #2</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="element-group-item">
+                    <div class="combined combined--middle">
+                        <div class="combined-aside">
+                            <div class="touch-menu-toggle" data-touch-menu-drawer="#drawer_3">
+                                <div class="touch-menu-toggle-glyph">
+                                    <span class="touch-menu-toggle-glyph-part"></span>
+                                    <span class="touch-menu-toggle-glyph-part"></span>
+                                    <span class="touch-menu-toggle-glyph-part"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="combined-body">
+                            <p>Open touch menu #3</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="touch-menu-drawer" id="drawer_2">
+                <h3>Touch-menu drawer #2</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            </div>
+
+            <div class="touch-menu-drawer" id="drawer_3">
+                <h3>Touch-menu drawer #3</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
             </div>
         </div>
-
-        <div class="touch-menu-toggle __touch-menu-toggle" data-touch-menu-drawer="#unique-drawer">
-            <div class="touch-menu-toggle-glyph">
-                <span class="touch-menu-toggle-glyph-part"></span>
-                <span class="touch-menu-toggle-glyph-part"></span>
-                <span class="touch-menu-toggle-glyph-part"></span>
-            </div>
-        </div>
-
-        <div class="touch-menu-drawer">
-            <h1>Drawer 1</h1>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-        </div>
-
-        <div class="touch-menu-drawer" id="unique-drawer">
-            <h1>Drawer 2</h1>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-        </div>
-    </div>
-</section>
-=======
-    <section id="touch-menu" class="fluid">
-    	<div class="wrapper">
-    		<div class="hide--smartphone">
-    			<div class="touch-menu-toggle touch-menu-toggle--ellipsis">
-    				<div class="touch-menu-toggle-glyph">
-    					<span class="touch-menu-toggle-glyph-part"></span>
-    					<span class="touch-menu-toggle-glyph-part"></span>
-    					<span class="touch-menu-toggle-glyph-part"></span>
-    				</div>
-    			</div>
-    		</div>
-
-    		<div class="touch-menu-toggle touch-menu-toggle--ellipsis">
-    			<div class="touch-menu-toggle-glyph">
-    				<span class="touch-menu-toggle-glyph-part"></span>
-    				<span class="touch-menu-toggle-glyph-part"></span>
-    				<span class="touch-menu-toggle-glyph-part"></span>
-    			</div>
-    		</div>
-
-    		<div class="touch-menu-toggle __touch-menu-toggle" data-touch-menu-drawer="#unique-drawer">
-    			<div class="touch-menu-toggle-glyph">
-    				<span class="touch-menu-toggle-glyph-part"></span>
-    				<span class="touch-menu-toggle-glyph-part"></span>
-    				<span class="touch-menu-toggle-glyph-part"></span>
-    			</div>
-    		</div>
-
-    		<div class="touch-menu-drawer">
-    			<h1>Drawer 1</h1>
-    			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-    			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-    			quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-    			consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-    			cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-    			proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-    		</div>
-
-    		<div class="touch-menu-drawer" id="unique-drawer">
-    			<h1>Drawer 2</h1>
-    			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-    			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-    			quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-    			consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-    			cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-    			proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-    		</div>
-    	</div>
     </section>
->>>>>>> Stashed changes
 {% endblock %}
