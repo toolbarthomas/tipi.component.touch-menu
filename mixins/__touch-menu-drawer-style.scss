@@ -16,6 +16,7 @@
 
 			@if $align == left
 			{
+				right: auto;
 				left: 0;
 				@include transform(
 					translateX(-100%)
@@ -23,6 +24,7 @@
 			}
 			@else
 			{
+				left: auto;
 				right: 0;
 				@include transform(
 					translateX(100%)

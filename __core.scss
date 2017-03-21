@@ -56,6 +56,27 @@
 		width: 100%;
 		overflow: hidden;
 
+		@if $touch-menu-drawer-align == left
+		{
+			left: 0;
+			@include transform(
+				translateX(-100%)
+			);
+		}
+		@else
+		{
+			right: 0;
+			@include transform(
+				translateX(100%)
+			);
+		}
+
+		@if $touch-menu-drawer-max-width != false
+		{
+			max-width: $touch-menu-drawer-max-width;
+		}
+
+
 		&.__touch-menu-drawer--ready {
 			display: block;
 		}
