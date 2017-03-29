@@ -54,7 +54,7 @@
 		display: none;
 		position: fixed;
 		top: 0;
-		height: 100%;
+		bottom: 0;
 		width: 100%;
 
 		@if $touch-menu-drawer-scrollable == true
