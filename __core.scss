@@ -54,7 +54,17 @@
 		top: 0;
 		height: 100%;
 		width: 100%;
-		overflow: hidden;
+
+		@if $touch-menu-drawer-scrollable == true
+		{
+			overflow-y: auto;
+			-ms-overflow-style: -ms-autohiding-scrollbar;
+			-webkit-overflow-scrolling: touch;
+		}
+		@else
+		{
+			overflow: hidden;
+		}
 
 		@if $touch-menu-drawer-align == left
 		{
@@ -75,7 +85,6 @@
 		{
 			max-width: $touch-menu-drawer-max-width;
 		}
-
 
 		&.__touch-menu-drawer--ready {
 			display: block;
