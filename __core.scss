@@ -2,7 +2,9 @@
 	.touch-menu-toggle {
 		position: relative;
 		display: inline-block;
+		vertical-align: top;
 		cursor: pointer;
+		@include user-select(none);
 	}
 
 	.touch-menu-toggle-glyph {
