@@ -12,6 +12,8 @@
 			registered_drawer : 'touch-menu-registered-drawer'
 		},
 		states : {
+			ready : '__touch-menu--ready',
+			active : '__touch-menu--active',
 			toggle_ready : '__touch-menu-toggle--ready',
 			toggle_active : '__touch-menu-toggle--active',
 			drawer_ready : '__touch-menu-drawer--ready',
@@ -109,6 +111,8 @@
 
 		elements.toggle.addClass(data.states.toggle_ready);
 		elements.drawer.addClass(data.states.drawer_ready);
+
+		$('html').addClass(data.states.ready);
 	}
 
 	function openTouchMenu(elements)
@@ -120,6 +124,8 @@
 
 		elements.toggles.addClass(data.states.toggle_active);
 		elements.drawer.addClass(data.states.drawer_active);
+
+		$('html').addClass(data.states.active);
 	}
 
 	function closeTouchMenu(elements)
@@ -131,6 +137,8 @@
 
 		elements.toggles.removeClass(data.states.toggle_active);
 		elements.drawer.removeClass(data.states.drawer_active);
+
+		$('html').removeClass(data.states.active);
 	}
 
 	function checkTouchMenuToggleVisibility(elements)
