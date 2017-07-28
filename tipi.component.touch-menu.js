@@ -37,6 +37,7 @@
 				closeTouchMenu(elements);
 			},
 			'tipi.touchMenu.resize' : function(event, elements) {
+				setTouchMenuDrawerHeight(elements);
 				checkTouchMenuToggleVisibility(elements);
 			}
 		});
@@ -99,6 +100,10 @@
 				toggle : toggle,
 				drawer : drawer
 			}]);
+
+			$(document).trigger('tipi.touchMenu.resize', [{
+				toggles: toggle
+			}]);
 		});
 	}
 
@@ -139,6 +144,44 @@
 		elements.drawer.removeClass(data.states.drawer_active);
 
 		$('html').removeClass(data.states.active);
+	}
+
+	function setTouchMenuDrawerHeight(elements)
+	{
+		if (typeof elements === 'undefined') {
+			return;
+		}
+
+		var viewport_height = $(window).height();
+
+		elements.toggles.each(function () {
+			var toggle = $(this);
+			var drawer = getTouchMenuDrawer(toggle);
+
+			if (drawer.length === 0)
+			{
+				return;
+			}
+
+			// Reset the height of the drawer
+			drawer.css({
+				'min-height' : '',
+				'bottom' : ''
+			});
+
+			var drawer_height = drawer.height();
+
+			// Continue if our drawer height is larger than the viewport
+			if (drawer_height > viewport_height)
+			{
+				return;
+			}
+
+			drawer.css({
+				'height': viewport_height,
+				'bottom': 'auto'
+			});
+		});
 	}
 
 	function checkTouchMenuToggleVisibility(elements)
